@@ -1,0 +1,75 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress Menu Caching\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-27 17:54+0000\n"
+"PO-Revision-Date: 2021-11-27 22:28+0000\n"
+"Last-Translator: Θοδωρής Γκίτσος\n"
+"Language-Team: Greek\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.5; wp-5.8.2\n"
+"X-Domain: dc-menu-caching"
+
+#. Description of the plugin
+msgid "Caches WordPress menus to improve loading time."
+msgstr ""
+"Αποθηκεύει τα μενού του WordPress στην cache για βελτίωση του χρόνου "
+"φόρτωσης της ιστοσελίδας."
+
+#: admin/class-dc-menu-caching-admin.php:92
+msgid "Enable/Disable Caching per Menu"
+msgstr "Ενεργοποίηση/Απενεργοποίηση Caching ανά Μενού"
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://www.dicha.gr"
+msgstr "https://www.dicha.gr"
+
+#: admin/class-dc-menu-caching-admin.php:56
+msgid "Menu Caching"
+msgstr "Menu Caching"
+
+#: admin/class-dc-menu-caching-admin.php:390
+msgid "Menus cache purged successfully!"
+msgstr "Η cache διαγράφηκε με επιτυχία!"
+
+#: admin/class-dc-menu-caching-admin.php:84
+msgid "Purge All Menus' Cache"
+msgstr "Εκκαθάριση της Cache όλων των Μενού"
+
+#: admin/class-dc-menu-caching-admin.php:86
+msgid "Purge Cache"
+msgstr "Εκκαθάριση Cache"
+
+#: admin/class-dc-menu-caching-admin.php:109
+msgid "Save Settings"
+msgstr "Αποθήκευση ρυθμίσεων"
+
+#: admin/class-dc-menu-caching-admin.php:94
+msgid ""
+"Select the menus you want to enable caching. Caching is enabled by default "
+"for all menus."
+msgstr ""
+"Επιλέξτε τα μενού που θέλετε να είναι ενεργοποιημένο το σύστημα caching. "
+"Αρχικά, το caching είναι ενεργοποιημένο για όλα τα μενού."
+
+#: admin/class-dc-menu-caching-admin.php:355
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#. Author of the plugin
+msgid "theogk"
+msgstr "theogk"
+
+#: admin/class-dc-menu-caching-admin.php:77
+msgid "Tools and info about menu caching."
+msgstr "Εργαλεία και πληροφορίες σχετικά με το caching των μενού."
+
+#. Name of the plugin
+msgid "WordPress Menu Caching"
+msgstr "WordPress Menu Caching"
