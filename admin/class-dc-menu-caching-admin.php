@@ -193,22 +193,15 @@ class Dc_Menu_Caching_Admin {
      * Fires after a navigation menu has been successfully updated.
      *
      * @param int $menu_id The ID of the updated menu.
+     *
+     * @since    1.0.0
      */
     function dc_purge_updated_menu_transient( $menu_id ) {
 
         $nav_obj   = wp_get_nav_menu_object( $menu_id );
         $menu_slug = is_a( $nav_obj, 'WP_Term' ) ? $nav_obj->slug : '';
 
-        $menu_html_index = get_option( 'dc_menu_html_index', [] );
-
-        if ( $menu_slug && !empty( $menu_html_index[ $menu_slug ] ) ) {
-            foreach ( $menu_html_index[ $menu_slug ]  as $menu_hash ) {
-                delete_transient(  'dc_menu_html_' . $menu_hash );
-            }
-
-            unset( $menu_html_index[ $menu_slug ] );
-            update_option( 'dc_menu_html_index', $menu_html_index );
-        }
+        $this->dc_purge_menu_html_transients( $menu_slug );
     }
 
 
@@ -275,19 +268,24 @@ class Dc_Menu_Caching_Admin {
 
 
     /**
-     * Purges all transients and empties the cache index array.
+     * Purges all or selected transients and empties the cache index array.
+     *
+     * @param string $slug_to_clean The menu slug to clean its transients. If none provided, then all transients will be cleared.
      *
      * @since    1.0.0
      */
-    public function dc_purge_all_menu_html_transients() {
+    public function dc_purge_menu_html_transients( $slug_to_clean = '' ) {
 
         $menu_html_index = get_option( 'dc_menu_html_index', [] );
 
         if ( !empty( $menu_html_index ) ) {
             foreach ( $menu_html_index  as $menu_slug => $menu_hashes ) {
+
+                if ( !empty( $slug_to_clean ) && $slug_to_clean !== $menu_slug ) continue;
+
                 if ( !empty( $menu_hashes ) ) {
-                    foreach ( $menu_hashes  as $key => $menu_hash ) {
-                        delete_transient(  'dc_menu_html_' . $menu_hash );
+                    foreach ( $menu_hashes as $key => $menu_hash ) {
+                        delete_transient( 'dc_menu_html_' . $menu_hash );
                         unset( $menu_html_index[ $menu_slug ][ $key ] );
                     }
                 }
@@ -310,7 +308,7 @@ class Dc_Menu_Caching_Admin {
             wp_die( 'Unauthorized request. Go away!');
         }
 
-        $this->dc_purge_all_menu_html_transients();
+        $this->dc_purge_menu_html_transients();
 
         wp_send_json_success();
     }

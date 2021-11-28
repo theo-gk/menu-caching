@@ -3,7 +3,7 @@
 	$(document).ready(function() {
 
 		let nocacheMenus = ajax_data.nocache_menus;
-		let statusToggle = jQuery(".dc-mc-enable-menu-state-toggle input[type=checkbox]");
+		let statusToggle = $(".dc-mc-enable-menu-state-toggle input[type=checkbox]");
 
 		statusToggle.each(function(index){
 			if( nocacheMenus.indexOf($(this).data("menu-slug") ) === -1 ) {
