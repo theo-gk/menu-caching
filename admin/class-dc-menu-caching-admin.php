@@ -136,7 +136,8 @@ class Dc_Menu_Caching_Admin {
         $menu_classes       = (string) $args->menu_class;
         $container_classes  = $args->container_class;
         $user_roles         = $this->dc_get_current_user_roles();
-        $menu_hash          = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles );
+        $user_session       = $this->dc_check_if_menu_contains_nonce_checks( $nav_menu ) ? wp_get_session_token() : '';
+        $menu_hash          = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles . $user_session );
 
 
 //    another way to create the menu hash - using all $args for extra data or use extra data for user caching etc
@@ -156,10 +157,44 @@ class Dc_Menu_Caching_Admin {
                     $menu_html_index[ $menu_slug ] = $current_menu_hashes;
                     update_option( 'dc_menu_html_index', $menu_html_index );
                 }
+
+                if ( !empty( $user_session ) ) {
+                    $menus_with_nonces = get_option( 'dc_menu_nonces_index', [] );
+                    $menus_with_nonces[ $menu_slug ] = $menu_slug;
+                    update_option( 'dc_menu_nonces_index', $menus_with_nonces );
+                }
             }
         }
 
         return $nav_menu;
+    }
+
+
+    /**
+     * Checks if a menu needs to be cached separately per session.
+     * This happens if it contains nonce checks.
+     *
+     * @param $menu_slug string The menu slug.
+     * @return bool Returns true if it needs separate cache.
+     *
+     * @since    1.0.0
+     */
+    function dc_cache_separate_menu_per_session( $menu_slug ) {
+        $menus_with_nonces = get_option( 'dc_menu_nonces_index', [] );
+        return in_array( $menu_slug, $menus_with_nonces, true );
+    }
+
+
+    /**
+     * Checks if the menu HTML contains a nonce check.
+     *
+     * @param $menu_html string The menu HTML.
+     * @return bool Returns true if the menu contains a nonce.
+     *
+     * @since    1.0.0
+     */
+    function dc_check_if_menu_contains_nonce_checks( $menu_html ) {
+        return strpos( $menu_html, 'wpnonce' ) !== false;
     }
 
 
@@ -180,7 +215,8 @@ class Dc_Menu_Caching_Admin {
         $container_classes  = $args->container_class;
         $menu_classes       = $args->menu_class;
         $user_roles         = $this->dc_get_current_user_roles();
-        $menu_hash          = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles );
+        $user_session       = $this->dc_cache_separate_menu_per_session( $menu_slug ) ? wp_get_session_token() : '';
+        $menu_hash          = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles . $user_session );
 
         $menu_cached_html   = get_transient( 'dc_menu_html_' . $menu_hash );
 
