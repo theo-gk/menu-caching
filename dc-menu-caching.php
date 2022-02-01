@@ -1,6 +1,5 @@
 <?php
 /**
- * The plugin bootstrap file
  *
  * @link              https://www.dicha.gr
  * @since             1.0.0
@@ -11,14 +10,14 @@
  * Plugin URI:        https://www.dicha.gr
  * Description:       Caches WordPress menus to improve loading time.
  * Version:           1.0.0
- * Author:            theogk
+ * Author:            Theo Gkitsos
  * Author URI:        https://www.dicha.gr
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       dc-menu-caching
  * Domain Path:       /languages
- * Requires at least: 5.4
- * Tested up to:      5.8.2
+ * Requires at least: 5.3
+ * Tested up to:      5.9
  * Stable tag:        1.0.0
  */
 
