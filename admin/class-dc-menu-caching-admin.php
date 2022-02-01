@@ -147,7 +147,9 @@ class Dc_Menu_Caching_Admin {
 
             if ( empty( get_transient( 'dc_menu_html_' . $menu_hash ) ) ) {
 
-                set_transient( 'dc_menu_html_' . $menu_hash, $nav_menu, 10*HOUR_IN_SECONDS );
+                $cache_lifetime = apply_filters( 'dc_wp_menu_caching_lifetime', 10*HOUR_IN_SECONDS );
+
+                set_transient( 'dc_menu_html_' . $menu_hash, $nav_menu, $cache_lifetime );
 
                 $menu_html_index     = get_option( 'dc_menu_html_index', [] );
                 $current_menu_hashes = !empty( $menu_html_index[ $menu_slug ] ) ? $menu_html_index[ $menu_slug ] : [];

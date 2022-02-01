@@ -45,6 +45,31 @@ adaadw
 
 = Test results - How effective is it anyway? =
 
+If you use a good caching plugin and a certain page is served from cache, then you not see a difference in loading times. BUT... there are many cases when a page is not served from cache and it that scenario you will notice a huge difference.
+
+Some of the scenarios when a page is not served from cache:
+- If you are not using a page caching plugin (Why not? Please install one!).
+- No existing cached version exists of the requested page. You benefit from menu caching during the first page load on every page, before the cached version is saved.
+- When users are logged-in. Even when using a per-user cache for logged-in users, menu caching is still super useful to quickly create the menu as the cache files are getting created.
+- On e-commerce sites on pages that can't be cached by dafault, like cart, checkout, my account, wishlist etc.
+- In most e-commerce sites, when a customer adds something to cart, then serving pages from cache stops to prevent false data in the mini-cart.
+
+I ran some tests on a medium-to-large e-commerce site with a mega menu with many categories, a separate mobile menu and a couple more small menus. Let's see the results (also in screenshots).
+
+For admin user:
+- Loading time for all menus - no menu caching: 0.46s (in average)
+- Loading time for all menus - with menu caching: 0.0015s (in average)
+- Speed benefit: 300+ times faster - menu loads almost instantly!
+
+For incognito visitor:
+- Loading time for all menus - no menu caching: 0.232194 sec
+- Loading time for all menus - with menu caching: 0.001185 sec
+- Speed benefit: ~200 times faster - menu loads almost instantly!
+
+Of course these numbers depend on your WordPress installation, your server setup and so many parameters but the outcome will be the same.
+
+With menu caching, instead of building the menu everytime and losing precious time during page load, your menus will load instantly from cache.
+
 == Screenshots ==
 
 1. Plugin settings.
@@ -52,20 +77,28 @@ adaadw
 
 == Frequently Asked Questions ==
 
- = Does it benefit my site if I use a page caching plugin? =
-Yes.
+ = How to activate menu caching? =
+ You don't have to do anything at all. As soon as tou install and activate the plugin, menu caching starts working immediately. You can visit the plugin's settings under Tools > Menu Caching to disable menu caching for a specific menu, or clear manually the cache.
 
- = How can I clean the menus' cache? =
-Yes.
+ = Does it benefit my site if I use a page caching plugin? =
+Yes, it does. Pages in some circumstances are not sarved from cache, or a cached version is not available. In these scenarios menu caching greatly reduces page load time. For more info see the respective section in the description.
+
+ = Can I clean the menus' cache manually? =
+Yes, there is a button on the plugin's settings under Tools > Menu Caching. You probably don't need to, though. The cache auto-refreshes frequently, and also gets flushed after you edit a menu.
 
  = What about menus with links which contain nonces or any really special custom menu items? =
 Yes.
 
  = Where are the cached data saved? =
-Yes.
+The cached menus are saved in the database in the 'wp_options' table as transients with a lifetime of 10 hours.
 
  = Why cache data are refreshing every 10 hours? Can I change that? =
-Yes.
+Cache gets automatically refreshed as a preventive measure, so that it never gets stale. Also, the 10 hours period prevents nonces from expiring, in case some of your menus contain some of them.
+
+Can't see why you want to change it but sure you can, using the 'dc_wp_menu_caching_lifetime' filter.
+ `
+ add_filter( 'dc_wp_menu_caching_lifetime', function( $original_value ) { return $time_in_seconds; } );
+ `
 
 == Installation ==
 
