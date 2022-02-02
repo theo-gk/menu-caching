@@ -3,11 +3,11 @@
 /**
  * Fired during plugin activation
  *
- * @package    Dc_Menu_Caching
- * @subpackage Dc_Menu_Caching/includes
+ * @package    Wp_Menu_Caching
+ * @subpackage Wp_Menu_Caching/includes
  */
 
-class Dc_Menu_Caching_Activator {
+class Wp_Menu_Caching_Activator {
 
     /**
      * Creates owner role and assigns capabilities

@@ -5,11 +5,11 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @package    Dc_Menu_Caching
- * @subpackage Dc_Menu_Caching/includes
+ * @package    Wp_Menu_Caching
+ * @subpackage Wp_Menu_Caching/includes
  */
 
-class Dc_Menu_Caching {
+class Wp_Menu_Caching {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -17,7 +17,7 @@ class Dc_Menu_Caching {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Dc_Menu_Caching_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Wp_Menu_Caching_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -49,12 +49,12 @@ class Dc_Menu_Caching {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'DC_MENU_CACHING_VERSION' ) ) {
-			$this->version = DC_MENU_CACHING_VERSION;
+		if ( defined( 'WP_MENU_CACHING_VERSION' ) ) {
+			$this->version = WP_MENU_CACHING_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'dc-menu-caching';
+		$this->plugin_name = 'wp-menu-caching';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -66,10 +66,10 @@ class Dc_Menu_Caching {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Dc_Menu_Caching_Loader. Orchestrates the hooks of the plugin.
-	 * - Dc_Menu_Caching_i18n. Defines internationalization functionality.
-	 * - Dc_Menu_Caching_Admin. Defines all hooks for the admin area.
-	 * - Dc_Menu_Caching_Public. Defines all hooks for the public side of the site.
+	 * - Wp_Menu_Caching_Loader. Orchestrates the hooks of the plugin.
+	 * - Wp_Menu_Caching_i18n. Defines internationalization functionality.
+	 * - Wp_Menu_Caching_Admin. Defines all hooks for the admin area.
+	 * - Wp_Menu_Caching_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -83,26 +83,26 @@ class Dc_Menu_Caching {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-dc-menu-caching-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-menu-caching-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-dc-menu-caching-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-menu-caching-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-dc-menu-caching-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-menu-caching-admin.php';
 
-		$this->loader = new Dc_Menu_Caching_Loader();
+		$this->loader = new Wp_Menu_Caching_Loader();
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Dc_Menu_Caching_i18n class in order to set the domain and to register the hook
+	 * Uses the Wp_Menu_Caching_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -110,7 +110,7 @@ class Dc_Menu_Caching {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Dc_Menu_Caching_i18n();
+		$plugin_i18n = new Wp_Menu_Caching_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 	}
@@ -124,7 +124,7 @@ class Dc_Menu_Caching {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Dc_Menu_Caching_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Wp_Menu_Caching_Admin( $this->get_plugin_name(), $this->get_version() );
 
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'dc_menu_caching_create_menu' );
 
@@ -167,7 +167,7 @@ class Dc_Menu_Caching {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Dc_Menu_Caching_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Wp_Menu_Caching_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

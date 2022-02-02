@@ -5,11 +5,11 @@
  *
  * @since      1.0.0
  *
- * @package    Dc_Menu_Caching
- * @subpackage Dc_Menu_Caching/includes
+ * @package    Wp_Menu_Caching
+ * @subpackage Wp_Menu_Caching/includes
  */
 
-class Dc_Menu_Caching_Deactivator {
+class Wp_Menu_Caching_Deactivator {
 
 	/**
 	 * Deletes all transients and options on deactivation.

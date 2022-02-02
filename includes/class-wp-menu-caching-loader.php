@@ -3,10 +3,10 @@
 /**
  * Register all actions and filters for the plugin
  *
- * @package    Dc_Menu_Caching
- * @subpackage Dc_Menu_Caching/includes
+ * @package    Wp_Menu_Caching
+ * @subpackage Wp_Menu_Caching/includes
  */
-class Dc_Menu_Caching_Loader {
+class Wp_Menu_Caching_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

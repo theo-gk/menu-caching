@@ -14,13 +14,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.5.5; wp-5.8.2\n"
-"X-Domain: dc-menu-caching"
+"X-Domain: wp-menu-caching"
 
 #. Description of the plugin
 msgid "Caches WordPress menus to improve page loading time."
 msgstr ""
 
-#: admin/class-dc-menu-caching-admin.php:88
+#: admin/class-wp-menu-caching-admin.php:88
 msgid "Enable/Disable Caching per Menu"
 msgstr ""
 
@@ -28,34 +28,34 @@ msgstr ""
 msgid "https://www.dicha.gr/"
 msgstr ""
 
-#: admin/class-dc-menu-caching-admin.php:52
-#: admin/class-dc-menu-caching-admin.php:53
+#: admin/class-wp-menu-caching-admin.php:52
+#: admin/class-wp-menu-caching-admin.php:53
 msgid "Menu Caching"
 msgstr ""
 
-#: admin/class-dc-menu-caching-admin.php:415
+#: admin/class-wp-menu-caching-admin.php:415
 msgid "Menus cache purged successfully!"
 msgstr ""
 
-#: admin/class-dc-menu-caching-admin.php:80
+#: admin/class-wp-menu-caching-admin.php:80
 msgid "Purge All Menus' Cache"
 msgstr ""
 
-#: admin/class-dc-menu-caching-admin.php:82
+#: admin/class-wp-menu-caching-admin.php:82
 msgid "Purge Cache"
 msgstr ""
 
-#: admin/class-dc-menu-caching-admin.php:105
+#: admin/class-wp-menu-caching-admin.php:105
 msgid "Save Settings"
 msgstr ""
 
-#: admin/class-dc-menu-caching-admin.php:90
+#: admin/class-wp-menu-caching-admin.php:90
 msgid ""
 "Select the menus you want to enable caching. Caching is enabled by default "
 "for all menus."
 msgstr ""
 
-#: admin/class-dc-menu-caching-admin.php:380
+#: admin/class-wp-menu-caching-admin.php:380
 msgid "Settings"
 msgstr ""
 
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Theo Gkitsos"
 msgstr ""
 
-#: admin/class-dc-menu-caching-admin.php:73
+#: admin/class-wp-menu-caching-admin.php:73
 msgid "Tools and info about menu caching."
 msgstr ""
 

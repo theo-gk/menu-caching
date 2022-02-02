@@ -6,11 +6,11 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @package    Dc_Menu_Caching
- * @subpackage Dc_Menu_Caching/includes
+ * @package    Wp_Menu_Caching
+ * @subpackage Wp_Menu_Caching/includes
  */
 
-class Dc_Menu_Caching_i18n {
+class Wp_Menu_Caching_i18n {
 
 	/**
 	 * Load the plugin text domain for translation.
@@ -20,7 +20,7 @@ class Dc_Menu_Caching_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'dc-menu-caching',
+			'wp-menu-caching',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
