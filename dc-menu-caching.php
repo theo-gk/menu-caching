@@ -1,23 +1,17 @@
 <?php
 /**
- *
- * @link              https://www.dicha.gr
- * @since             1.0.0
- * @package           Dc_Menu_Caching
- *
- * @wordpress-plugin
  * Plugin Name:       WordPress Menu Caching
- * Plugin URI:        https://www.dicha.gr
- * Description:       Caches WordPress menus to improve loading time.
+ * Description:       Caches WordPress menus to improve page loading time.
  * Version:           1.0.0
  * Author:            Theo Gkitsos
- * Author URI:        https://www.dicha.gr
+ * Author URI:        https://www.dicha.gr/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       dc-menu-caching
  * Domain Path:       /languages
  * Requires at least: 5.3
  * Tested up to:      5.9
+ * Requires PHP:      5.6
  * Stable tag:        1.0.0
  */
 
@@ -30,6 +24,8 @@ if ( ! defined( 'WPINC' ) ) {
  * Currently plugin version.
  */
 define( 'DC_MENU_CACHING_VERSION', '1.0.0' );
+define( 'DC_MENU_CACHING_PLUGIN_DIR', dirname( __FILE__ ) );
+define( 'DC_MENU_CACHING_BASE_FILE', 'dc-menu-caching/dc-menu-caching.php' );
 
 /**
  * The code that runs during plugin activation.
@@ -61,16 +57,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-dc-menu-caching.php';
 /**
  * Begins execution of the plugin.
  *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
  * @since    1.0.0
  */
 function run_dc_menu_caching() {
-
 	$plugin = new Dc_Menu_Caching();
 	$plugin->run();
-
 }
 run_dc_menu_caching();

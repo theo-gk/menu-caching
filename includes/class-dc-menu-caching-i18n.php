@@ -6,9 +6,6 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       https://www.dicha.gr
- * @since      1.0.0
- *
  * @package    Dc_Menu_Caching
  * @subpackage Dc_Menu_Caching/includes
  */
@@ -29,7 +26,5 @@ class Dc_Menu_Caching_i18n {
 		);
 
 	}
-
-
 
 }

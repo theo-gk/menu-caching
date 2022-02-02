@@ -3,9 +3,6 @@
 /**
  * Register all actions and filters for the plugin
  *
- * @link       https://www.dicha.gr
- * @since      1.0.0
- *
  * @package    Dc_Menu_Caching
  * @subpackage Dc_Menu_Caching/includes
  */
@@ -38,7 +35,6 @@ class Dc_Menu_Caching_Loader {
 
 		$this->actions = array();
 		$this->filters = array();
-
 	}
 
 	/**
@@ -94,7 +90,6 @@ class Dc_Menu_Caching_Loader {
 		);
 
 		return $hooks;
-
 	}
 
 	/**
@@ -111,7 +106,6 @@ class Dc_Menu_Caching_Loader {
 		foreach ( $this->actions as $hook ) {
 			add_action( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
 		}
-
 	}
 
 }

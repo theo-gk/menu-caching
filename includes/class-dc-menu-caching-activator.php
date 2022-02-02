@@ -3,9 +3,6 @@
 /**
  * Fired during plugin activation
  *
- * @link       https://www.dicha.gr
- * @since      1.0.0
- *
  * @package    Dc_Menu_Caching
  * @subpackage Dc_Menu_Caching/includes
  */

@@ -3,9 +3,6 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://www.dicha.gr
- * @since      1.0.0
- *
  * @package    Dc_Menu_Caching
  * @subpackage Dc_Menu_Caching/admin
  */
@@ -35,13 +32,12 @@ class Dc_Menu_Caching_Admin {
 	 *
 	 * @since    1.0.0
 	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string    $version           The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
     /**
@@ -54,10 +50,10 @@ class Dc_Menu_Caching_Admin {
         add_submenu_page(
             'tools.php',
             esc_html__( 'Menu Caching', 'dc-menu-caching' ),
-            esc_html_x( 'Menu Caching', 'dc-menu-caching' ),
+            esc_html__( 'Menu Caching', 'dc-menu-caching' ),
             'manage_options',
             'dc-menu-caching',
-            array( $this, 'dc_menu_caching_plugin_settings' )
+            [ $this, 'dc_menu_caching_plugin_settings' ]
         );
     }
 
@@ -139,10 +135,6 @@ class Dc_Menu_Caching_Admin {
         $user_session       = $this->dc_check_if_menu_contains_nonce_checks( $nav_menu ) ? wp_get_session_token() : '';
         $menu_hash          = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles . $user_session );
 
-
-//    another way to create the menu hash - using all $args for extra data or use extra data for user caching etc
-//    global $wp_query; $menu_signature = md5( wp_json_encode( $args ) . $wp_query->query_vars_hash );
-
         if ( !empty( $menu_slug ) ) {
 
             if ( empty( get_transient( 'dc_menu_html_' . $menu_hash ) ) ) {
@@ -219,7 +211,6 @@ class Dc_Menu_Caching_Admin {
         $user_roles         = $this->dc_get_current_user_roles();
         $user_session       = $this->dc_cache_separate_menu_per_session( $menu_slug ) ? wp_get_session_token() : '';
         $menu_hash          = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles . $user_session );
-
         $menu_cached_html   = get_transient( 'dc_menu_html_' . $menu_hash );
 
         return !empty( $menu_cached_html ) ? $menu_cached_html : null;
@@ -317,7 +308,7 @@ class Dc_Menu_Caching_Admin {
         $menu_html_index = get_option( 'dc_menu_html_index', [] );
 
         if ( !empty( $menu_html_index ) ) {
-            foreach ( $menu_html_index  as $menu_slug => $menu_hashes ) {
+            foreach ( $menu_html_index as $menu_slug => $menu_hashes ) {
 
                 if ( !empty( $slug_to_clean ) && $slug_to_clean !== $menu_slug ) continue;
 
@@ -384,9 +375,7 @@ class Dc_Menu_Caching_Admin {
      */
     public function dc_action_links( $actions, $plugin_file ) {
 
-        $get_plugin_file = $this->plugin_name . '/' . $this->plugin_name . '.php';
-
-        if ( $plugin_file === $get_plugin_file ) {
+        if ( $plugin_file === DC_MENU_CACHING_BASE_FILE ) {
             $settings  = [
                 'settings' => '<a href="' . esc_url( get_admin_url( null, 'tools.php?page=dc-menu-caching' ) ) . '">' . esc_html__( 'Settings', 'dc-menu-caching' ) . '</a>',
             ];
