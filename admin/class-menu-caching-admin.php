@@ -395,7 +395,7 @@ class Wp_Menu_Caching_Admin {
 	 */
 	public function enqueue_styles( $hook ) {
 
-        if ( 'tools_page_wp-menu-caching' === $hook ) {
+        if ( 'tools_page_menu-caching' === $hook ) {
             wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/menu-caching-admin.css', array(), $this->version );
         }
 	}
@@ -407,7 +407,7 @@ class Wp_Menu_Caching_Admin {
 	 */
 	public function enqueue_scripts( $hook ) {
 
-        if ( 'tools_page_wp-menu-caching' === $hook ) {
+        if ( 'tools_page_menu-caching' === $hook ) {
 
             $ajax_data = [
                 'ajaxurl'       => admin_url( 'admin-ajax.php' ),

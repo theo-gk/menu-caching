@@ -112,8 +112,8 @@ Can't see why you want to change it but sure you can, using the 'dc_wp_menu_cach
 
 == Installation ==
 
-1. Download the plugin from [Official WP Plugin Repository](https://wordpress.org/plugins/wp-menu-caching/).
-2. Upload Plugin from your WP Dashboard ( Plugins>Add New>Upload Plugin ) the wp-menu-caching.zip file.
+1. Download the plugin from [Official WP Plugin Repository](https://wordpress.org/plugins/menu-caching/).
+2. Upload Plugin from your WP Dashboard ( Plugins>Add New>Upload Plugin ) the menu-caching.zip file.
 3. Activate the plugin through the 'Plugins' menu in WordPress Dashboard.
 4. Plugin's settings are located inside Tools > Menu Caching.
 
