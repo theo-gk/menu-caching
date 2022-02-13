@@ -54,7 +54,7 @@ class Wp_Menu_Caching {
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'wp-menu-caching';
+		$this->plugin_name = 'menu-caching';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -83,18 +83,18 @@ class Wp_Menu_Caching {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-menu-caching-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-menu-caching-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-menu-caching-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-menu-caching-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-menu-caching-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-menu-caching-admin.php';
 
 		$this->loader = new Wp_Menu_Caching_Loader();
 	}

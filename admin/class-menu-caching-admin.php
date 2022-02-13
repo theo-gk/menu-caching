@@ -49,10 +49,10 @@ class Wp_Menu_Caching_Admin {
 
         add_submenu_page(
             'tools.php',
-            esc_html__( 'Menu Caching', 'wp-menu-caching' ),
-            esc_html__( 'Menu Caching', 'wp-menu-caching' ),
+            esc_html__( 'Menu Caching', 'menu-caching' ),
+            esc_html__( 'Menu Caching', 'menu-caching' ),
             'manage_options',
-            'wp-menu-caching',
+            'menu-caching',
             [ $this, 'dc_menu_caching_plugin_settings' ]
         );
     }
@@ -70,24 +70,24 @@ class Wp_Menu_Caching_Admin {
         ?>
         <div class="wrap">
             <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-            <span><?php esc_html_e( 'Tools and info about menu caching.', 'wp-menu-caching' ); ?></span>
+            <span><?php esc_html_e( 'Tools and info about menu caching.', 'menu-caching' ); ?></span>
         </div>
         <div class="clear"></div>
         <div class="render-settings">
             <?php do_action( 'dc_menu_caching_plugin_settings' ); ?>
         </div>
         <div class="wrap">
-            <h3><?php esc_html_e( 'Purge All Menus\' Cache', 'wp-menu-caching' ); ?></h3>
+            <h3><?php esc_html_e( 'Purge All Menus\' Cache', 'menu-caching' ); ?></h3>
             <p>
-                <button type="button" class="button" id="dc_menu_caching_purge_all"><?php esc_html_e( 'Purge Cache', 'wp-menu-caching' ); ?></button>
+                <button type="button" class="button" id="dc_menu_caching_purge_all"><?php esc_html_e( 'Purge Cache', 'menu-caching' ); ?></button>
             </p>
         </div>
         <div class="clear"></div>
         <hr>
         <div class="wrap">
-            <h3><?php esc_html_e( 'Enable/Disable Caching per Menu', 'wp-menu-caching' ); ?></h3>
+            <h3><?php esc_html_e( 'Enable/Disable Caching per Menu', 'menu-caching' ); ?></h3>
             <p>
-                <?php esc_html_e( 'Select the menus you want to enable caching. Caching is enabled by default for all menus.', 'wp-menu-caching' ); ?>
+                <?php esc_html_e( 'Select the menus you want to enable caching. Caching is enabled by default for all menus.', 'menu-caching' ); ?>
             </p>
             <div class="dc-mc-enable-wrapper">
                 <?php foreach ( $menus_data as $menu_slug => $menu_name ) : ?>
@@ -102,7 +102,7 @@ class Wp_Menu_Caching_Admin {
                 </div>
                 <?php endforeach; ?>
                 <div class="dc-mc-enable-submit">
-                    <button type="button" class="button button-primary" id="dc_mc_enable_save"><?php esc_html_e( 'Save Settings', 'wp-menu-caching' ); ?></button>
+                    <button type="button" class="button button-primary" id="dc_mc_enable_save"><?php esc_html_e( 'Save Settings', 'menu-caching' ); ?></button>
                 </div>
             </div>
         </div>
@@ -377,7 +377,7 @@ class Wp_Menu_Caching_Admin {
 
         if ( $plugin_file === WP_MENU_CACHING_BASE_FILE ) {
             $settings  = [
-                'settings' => '<a href="' . esc_url( get_admin_url( null, 'tools.php?page=wp-menu-caching' ) ) . '">' . esc_html__( 'Settings', 'wp-menu-caching' ) . '</a>',
+                'settings' => '<a href="' . esc_url( get_admin_url( null, 'tools.php?page=menu-caching' ) ) . '">' . esc_html__( 'Settings', 'menu-caching' ) . '</a>',
             ];
 
             $actions = array_merge( $settings, $actions );
@@ -396,7 +396,7 @@ class Wp_Menu_Caching_Admin {
 	public function enqueue_styles( $hook ) {
 
         if ( 'tools_page_wp-menu-caching' === $hook ) {
-            wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-menu-caching-admin.css', array(), $this->version );
+            wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/menu-caching-admin.css', array(), $this->version );
         }
 	}
 
@@ -412,13 +412,13 @@ class Wp_Menu_Caching_Admin {
             $ajax_data = [
                 'ajaxurl'       => admin_url( 'admin-ajax.php' ),
                 'nonce'         => wp_create_nonce( 'dc-ajax-menu-caching-nonce' ),
-                'message'       => esc_html__( 'Menus cache purged successfully!', 'wp-menu-caching' ),
+                'message'       => esc_html__( 'Menus cache purged successfully!', 'menu-caching' ),
                 'nocache_menus' => get_option( 'dc_mc_nocache_menus' ),
             ];
 
-            wp_register_script( 'wp-menu-caching', plugin_dir_url( __FILE__ ) . 'js/wp-menu-caching-admin.js', array( 'jquery' ), $this->version, true );
-            wp_localize_script( 'wp-menu-caching', 'ajax_data', $ajax_data );
-            wp_enqueue_script( 'wp-menu-caching' );
+            wp_register_script( 'menu-caching', plugin_dir_url( __FILE__ ) . 'js/menu-caching-admin.js', array( 'jquery' ), $this->version, true );
+            wp_localize_script( 'menu-caching', 'ajax_data', $ajax_data );
+            wp_enqueue_script( 'menu-caching' );
         }
 	}
 }

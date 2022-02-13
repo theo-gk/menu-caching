@@ -20,7 +20,7 @@ class Wp_Menu_Caching_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'wp-menu-caching',
+			'menu-caching',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
