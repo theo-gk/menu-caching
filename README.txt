@@ -1,7 +1,7 @@
-=== WP Menu Caching ===
+=== Menu Caching ===
 Contributors: theogk
 Donate link: https://www.buymeacoffee.com/theogk
-Plugin Name: WP Menu Caching
+Plugin Name: Menu Caching
 Tags: wordpress menu, caching, menu cache, menu caching, speed up menu
 Author: Theo Gkitsos
 Author link: https://www.dicha.gr/
