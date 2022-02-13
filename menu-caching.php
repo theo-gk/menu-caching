@@ -21,7 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * Currently plugin version.
+ * Current plugin version.
  */
 define( 'WP_MENU_CACHING_VERSION', '1.0.0' );
 define( 'WP_MENU_CACHING_PLUGIN_DIR', dirname( __FILE__ ) );
