@@ -58,6 +58,7 @@ Some of the scenarios when a page is not served from cache:
 - When users are logged-in. Even when using a per-user cache for logged-in users, menu caching is still super useful to quickly create the menu as the cache files are getting created.
 - On e-commerce sites on pages that can't be cached by dafault, like cart, checkout, my account, wishlist etc.
 - In most e-commerce sites, when a customer adds something to cart, then serving pages from cache stops to prevent false data in the mini-cart.
+- On some AJAX requests that load page content that includes menus.
 
 Let's see the results from some tests run on a medium-to-large e-commerce site with a mega menu with many categories, a separate mobile menu and a couple more small menus.
 
