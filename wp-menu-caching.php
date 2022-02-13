@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       WordPress Menu Caching
+ * Plugin Name:       WP Menu Caching
  * Description:       Caches WordPress menus to improve page loading time.
  * Version:           1.0.0
  * Author:            Theo Gkitsos
