@@ -356,7 +356,7 @@ class Wp_Menu_Caching_Admin {
             wp_die( 'Unauthorized request. Go away!');
         }
 
-        $nocache_menus = !empty( $_POST['nocache_menus'] ) ? array_map( 'esc_attr', $_POST['nocache_menus'] ) : [];
+        $nocache_menus = !empty( $_POST['nocache_menus'] ) ? array_map( 'sanitize_text_field', $_POST['nocache_menus'] ) : [];
 
         update_option( 'dc_mc_nocache_menus', $nocache_menus, true );
 
