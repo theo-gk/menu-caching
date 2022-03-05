@@ -133,7 +133,8 @@ class Wp_Menu_Caching_Admin {
         $container_classes  = $args->container_class;
         $user_roles         = $this->dc_get_current_user_roles();
         $user_session       = $this->dc_check_if_menu_contains_nonce_checks( $nav_menu ) ? wp_get_session_token() : '';
-        $menu_hash          = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles . $user_session );
+        $user_language		= get_locale();
+        $menu_hash          = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles . $user_session . $user_language );
 
         if ( !empty( $menu_slug ) ) {
 
@@ -210,7 +211,8 @@ class Wp_Menu_Caching_Admin {
         $menu_classes       = $args->menu_class;
         $user_roles         = $this->dc_get_current_user_roles();
         $user_session       = $this->dc_cache_separate_menu_per_session( $menu_slug ) ? wp_get_session_token() : '';
-        $menu_hash          = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles . $user_session );
+        $user_language		= get_locale();
+        $menu_hash          = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles . $user_session . $user_language );
         $menu_cached_html   = get_transient( 'dc_menu_html_' . $menu_hash );
 
         return !empty( $menu_cached_html ) ? $menu_cached_html : null;

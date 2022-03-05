@@ -40,6 +40,8 @@ Menu changes are very rare and this makes them an easy target for caching. Cachi
 - Clear all menu cache with a button on the settings page.
 - Every time you edit a menu, its cache is automatically purged.
 - All cached data are automatically purged every 10 hours to keep everything fresh, like nonces etc.
+- Compatible with caching plugins like WPRocket, W3 Total Cache etc.
+- Compatible with most translation plugins. Tested ok with WPML and TranslatePress.
 
 = How it works =
 
