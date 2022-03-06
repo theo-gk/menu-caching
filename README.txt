@@ -8,7 +8,7 @@ Author link: https://www.dicha.gr/
 Version: 1.0.0
 Stable tag: 1.0.0
 Requires at least: 5.3
-Tested up to: 5.9
+Tested up to: 5.9.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -58,7 +58,7 @@ Some of the scenarios when a page is not served from cache:
 - If you are not using a page caching plugin (Why not? Please install one!).
 - No existing cached version exists of the requested page. You benefit from menu caching during the first page load on every page, before the cached version is saved.
 - When users are logged-in. Even when using a per-user cache for logged-in users, menu caching is still super useful to quickly create the menu as the cache files are getting created.
-- On e-commerce sites on pages that can't be cached by dafault, like cart, checkout, my account, wishlist etc.
+- On e-commerce sites on pages that can't be cached by default, like cart, checkout, my account, wishlist etc.
 - In most e-commerce sites, when a customer adds something to cart, then serving pages from cache stops to prevent false data in the mini-cart.
 - On some AJAX requests that load page content that includes menus.
 
@@ -88,7 +88,7 @@ With menu caching, instead of building the menu everytime and losing precious ti
 == Frequently Asked Questions ==
 
  = How to activate menu caching? =
- You don't have to do anything at all. As soon as tou install and activate the plugin, menu caching starts working immediately. You can visit the plugin's settings under Tools > Menu Caching to disable menu caching for a specific menu, or clear manually the cache.
+ You don't have to do anything at all. As soon as you install and activate the plugin, menu caching starts working immediately. You can visit the plugin's settings under Tools > Menu Caching to disable menu caching for a specific menu, or clear manually the cache.
 
  = Does it benefit my site if I use a page caching plugin? =
 Yes, it does. Pages in some circumstances are not sarved from cache, or a cached version is not available. In these scenarios menu caching greatly reduces page load time. For more info see the respective section in the description.
