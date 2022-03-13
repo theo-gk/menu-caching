@@ -143,22 +143,22 @@ class Wp_Menu_Caching_Admin {
 
             if ( empty( get_transient( 'dc_menu_html_' . $menu_hash ) ) ) {
 
-                $cache_lifetime = apply_filters( 'dc_wp_menu_caching_lifetime', 10*HOUR_IN_SECONDS );
+                $menu_html_index     = get_option( 'dc_menu_html_index', [] );
+                $sanitized_menu_slug = sanitize_key( $menu_slug );
+                $current_menu_hashes = !empty( $menu_html_index[ $sanitized_menu_slug ] ) ? $menu_html_index[ $sanitized_menu_slug ] : [];
+                $cache_lifetime      = apply_filters( 'dc_wp_menu_caching_lifetime', 10*HOUR_IN_SECONDS );
 
                 set_transient( 'dc_menu_html_' . $menu_hash, $nav_menu, $cache_lifetime );
 
-                $menu_html_index     = get_option( 'dc_menu_html_index', [] );
-                $current_menu_hashes = !empty( $menu_html_index[ $menu_slug ] ) ? $menu_html_index[ $menu_slug ] : [];
-
                 if ( !in_array( $menu_hash, $current_menu_hashes ) ) {
                     $current_menu_hashes[] = $menu_hash;
-                    $menu_html_index[ $menu_slug ] = $current_menu_hashes;
+                    $menu_html_index[ $sanitized_menu_slug ] = $current_menu_hashes;
                     update_option( 'dc_menu_html_index', $menu_html_index );
                 }
 
                 if ( !empty( $user_session ) ) {
                     $menus_with_nonces = get_option( 'dc_menu_nonces_index', [] );
-                    $menus_with_nonces[ $menu_slug ] = $menu_slug;
+                    $menus_with_nonces[ $sanitized_menu_slug ] = $sanitized_menu_slug;
                     update_option( 'dc_menu_nonces_index', $menus_with_nonces );
                 }
             }
@@ -179,7 +179,7 @@ class Wp_Menu_Caching_Admin {
      */
     function dc_cache_separate_menu_per_session( $menu_slug ) {
         $menus_with_nonces = get_option( 'dc_menu_nonces_index', [] );
-        return in_array( $menu_slug, $menus_with_nonces, true );
+        return in_array( sanitize_key( $menu_slug ), $menus_with_nonces, true );
     }
 
 
@@ -318,7 +318,7 @@ class Wp_Menu_Caching_Admin {
         if ( !empty( $menu_html_index ) ) {
             foreach ( $menu_html_index as $menu_slug => $menu_hashes ) {
 
-                if ( !empty( $slug_to_clean ) && $slug_to_clean !== $menu_slug ) continue;
+                if ( !empty( $slug_to_clean ) && sanitize_key( $slug_to_clean ) !== $menu_slug ) continue;
 
                 if ( !empty( $menu_hashes ) ) {
                     foreach ( $menu_hashes as $key => $menu_hash ) {
@@ -329,6 +329,13 @@ class Wp_Menu_Caching_Admin {
             }
 
             update_option( 'dc_menu_html_index', $menu_html_index );
+        }
+
+        // make sure all transients get deleted
+        // some transients are not indexed if there are saved at the same time with another
+        if ( empty( $slug_to_clean ) ) {
+            global $wpdb;
+            $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '%_dc_menu_html_%'" );
         }
     }
 
