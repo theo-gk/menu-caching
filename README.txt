@@ -5,10 +5,10 @@ Plugin Name: Menu Caching
 Tags: wordpress menu, caching, menu cache, menu caching, speed up menu
 Author: Theo Gkitsos
 Author link: https://www.dicha.gr/
-Version: 1.0.0
-Stable tag: 1.0.0
+Version: 1.1
+Stable tag: 1.1
 Requires at least: 5.3
-Tested up to: 5.9.1
+Tested up to: 5.9.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -120,6 +120,11 @@ Can't see why you want to change it but sure you can, using the 'dc_wp_menu_cach
 4. Plugin's settings are located inside Tools > Menu Caching.
 
 == Changelog ==
+
+= 1.1 =
+* Fix error during uninstallation.
+* Change hash generator to cover more cases and menu classes.
+* Save no-cache checkbox state for menus with non-english slug.
 
 = 1.0.0 =
 * Initial Release

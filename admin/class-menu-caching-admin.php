@@ -95,7 +95,7 @@ class Wp_Menu_Caching_Admin {
                     <div class="dc-mc-enable-menu-name"><?php echo esc_html( $menu_name ); ?></div>
                     <div class="dc-mc-enable-menu-state-toggle">
                         <label class="switch">
-                            <input type="checkbox" data-menu-slug="<?php echo esc_attr( $menu_slug ); ?>">
+                            <input type="checkbox" data-menu-slug="<?php echo esc_attr( sanitize_key( $menu_slug ) ); ?>">
                             <span class="slider"></span>
                         </label>
                     </div>
@@ -128,13 +128,16 @@ class Wp_Menu_Caching_Admin {
 
         if ( $this->dc_is_menu_caching_disabled( $menu_slug ) ) return $nav_menu;
 
-        $theme_location     = $args->theme_location;
-        $menu_classes       = (string) $args->menu_class;
-        $container_classes  = $args->container_class;
-        $user_roles         = $this->dc_get_current_user_roles();
-        $user_session       = $this->dc_check_if_menu_contains_nonce_checks( $nav_menu ) ? wp_get_session_token() : '';
-        $user_language		= get_locale();
-        $menu_hash          = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles . $user_session . $user_language );
+        $theme_location         = $args->theme_location;
+        $menu_classes           = (string) $args->menu_class;
+        $container_classes      = $args->container_class;
+        $user_roles             = $this->dc_get_current_user_roles();
+        $user_session           = $this->dc_check_if_menu_contains_nonce_checks( $nav_menu ) ? wp_get_session_token() : '';
+        $user_language		    = get_locale();
+        $queried_object         = get_queried_object();
+        $queried_object_type    = is_object( $queried_object ) ? get_class( $queried_object ) : '';
+        $queried_object_id      = get_queried_object_id();
+        $menu_hash              = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles . $user_session . $user_language . $queried_object_type . $queried_object_id );
 
         if ( !empty( $menu_slug ) ) {
 
@@ -205,15 +208,18 @@ class Wp_Menu_Caching_Admin {
      */
     function dc_show_cached_menu_html( $default, $args ) {
 
-        $menu_slug          = $this->dc_get_menu_slug( $args );
-        $theme_location     = $args->theme_location;
-        $container_classes  = $args->container_class;
-        $menu_classes       = $args->menu_class;
-        $user_roles         = $this->dc_get_current_user_roles();
-        $user_session       = $this->dc_cache_separate_menu_per_session( $menu_slug ) ? wp_get_session_token() : '';
-        $user_language		= get_locale();
-        $menu_hash          = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles . $user_session . $user_language );
-        $menu_cached_html   = get_transient( 'dc_menu_html_' . $menu_hash );
+        $menu_slug              = $this->dc_get_menu_slug( $args );
+        $theme_location         = $args->theme_location;
+        $container_classes      = $args->container_class;
+        $menu_classes           = $args->menu_class;
+        $user_roles             = $this->dc_get_current_user_roles();
+        $user_session           = $this->dc_cache_separate_menu_per_session( $menu_slug ) ? wp_get_session_token() : '';
+        $user_language		    = get_locale();
+        $queried_object         = get_queried_object();
+        $queried_object_type    = is_object( $queried_object ) ? get_class( $queried_object ) : '';
+        $queried_object_id      = get_queried_object_id();
+        $menu_hash              = md5( $menu_slug . $theme_location . $container_classes . $menu_classes . $user_roles . $user_session . $user_language . $queried_object_type . $queried_object_id );
+        $menu_cached_html       = get_transient( 'dc_menu_html_' . $menu_hash );
 
         return !empty( $menu_cached_html ) ? $menu_cached_html : null;
     }
@@ -294,7 +300,7 @@ class Wp_Menu_Caching_Admin {
 
         $nocache_menus = get_option( 'dc_mc_nocache_menus', [] );
 
-        return in_array( $menu_slug, $nocache_menus );
+        return in_array( sanitize_key( $menu_slug ), $nocache_menus );
     }
 
 
