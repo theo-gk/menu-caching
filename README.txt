@@ -4,16 +4,16 @@ Donate link: https://www.buymeacoffee.com/theogk
 Plugin Name: Menu Caching
 Tags: wordpress menu, caching, menu cache, menu caching, speed up menu
 Author: Theo Gkitsos
-Author link: https://www.dicha.gr/
-Version: 1.1
-Stable tag: 1.1
+Author link: https://theodorosgkitsos.com/
+Version: 1.1.1
+Stable tag: 1.1.1
 Requires at least: 5.3
-Tested up to: 5.9.2
+Tested up to: 6.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Caches WordPress menus to improve page loading time.
+This plugin caches WordPress menus to improve page loading time.
 
 == Description ==
 
@@ -35,7 +35,7 @@ Menu changes are very rare and this makes them an easy target for caching. Cachi
 
 
 = Full features list =
-- Caches all WordPress menus to improve page loading time.
+- Caches all classic WordPress menus to improve page loading time.
 - Enable/disable caching per menu.
 - Clear all menu cache with a button on the settings page.
 - Every time you edit a menu, its cache is automatically purged.
@@ -80,6 +80,10 @@ Of course these numbers depend on your WordPress installation, your server setup
 
 With menu caching, instead of building the menu everytime and losing precious time during page load, your menus will load instantly from cache.
 
+= Compatibility with new "block" themes =
+
+Menus on the new block themes are constructed in a different way via the block editor, and not via the classic nav builder we all love to hate. This plugin can't optimize menus built with the new block editor. It's not going to break anything though, it won't do anything at all. If you use a classic theme like 99.9% of the WordPress websites out there, this plugin will be useful to you.
+
 == Screenshots ==
 
 1. Plugin settings.
@@ -112,6 +116,20 @@ Can't see why you want to change it but sure you can, using the 'dc_wp_menu_cach
  add_filter( 'dc_wp_menu_caching_lifetime', function( $original_value ) { return $time_in_seconds; } );
  `
 
+ = Do you have problem with a specific menu after enabling this plugin? =
+ Some themes make weird things to menus. Or maybe you use a plugin that add extra functionality to menus, like mega menus etc. This plugin works fine with most of the themes and plugins out there, but I can't promise compatibility with anything out there.
+
+ If you notice anything weird in a menu after enabling this plugin, please head to this plugin's settings and disable caching for this specific menu.
+
+ = Is it compatible with the new block themes? =
+ No, it's not because menus in block themes work in an entirely different way. It's not going to break anything though, it won't do anything at all, like wearing sunglasses at night.
+
+== Roadmap ==
+
+This plugin does only one specific thing, menu caching. There is no plan to add more features. Of course small improvements may be implemented, and if any bug appears, I will try to fix it. Next versions will try to expand compatibility with more popular themes.
+
+A next update is already under development, intending to add compatibility with Woodmart theme.
+
 == Installation ==
 
 1. Download the plugin from [Official WP Plugin Repository](https://wordpress.org/plugins/menu-caching/).
@@ -120,6 +138,9 @@ Can't see why you want to change it but sure you can, using the 'dc_wp_menu_cach
 4. Plugin's settings are located inside Tools > Menu Caching.
 
 == Changelog ==
+
+= 1.1.1 =
+* Tested up to 6.2.
 
 = 1.1 =
 * Fix error during uninstallation.

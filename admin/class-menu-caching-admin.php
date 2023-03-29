@@ -70,7 +70,7 @@ class Wp_Menu_Caching_Admin {
         ?>
         <div class="wrap">
             <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-            <span><?php esc_html_e( 'Tools and info about menu caching.', 'menu-caching' ); ?></span>
+            <div><?php esc_html_e( 'Tools and info about menu caching.', 'menu-caching' ); ?></div>
         </div>
         <div class="clear"></div>
         <div class="render-settings">

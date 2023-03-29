@@ -1,18 +1,18 @@
 <?php
 /**
  * Plugin Name:       Menu Caching
- * Description:       Caches WordPress menus to improve page loading time.
- * Version:           1.1
+ * Description:       This plugin caches WordPress menus to improve page loading time.
+ * Version:           1.1.1
  * Author:            Theo Gkitsos
- * Author URI:        https://www.dicha.gr/
+ * Author URI:        https://theodorosgkitsos.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       menu-caching
  * Domain Path:       /languages
  * Requires at least: 5.3
- * Tested up to:      5.9.2
+ * Tested up to:      6.2
  * Requires PHP:      5.6
- * Stable tag:        1.1
+ * Stable tag:        1.1.1
  */
 
 // If this file is called directly, abort.
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Current plugin version.
  */
-define( 'WP_MENU_CACHING_VERSION', '1.1' );
+define( 'WP_MENU_CACHING_VERSION', '1.1.1' );
 define( 'WP_MENU_CACHING_PLUGIN_DIR', dirname( __FILE__ ) );
 define( 'WP_MENU_CACHING_BASE_FILE', 'menu-caching/menu-caching.php' );
 
