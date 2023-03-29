@@ -130,6 +130,8 @@ This plugin does only one specific thing, menu caching. There is no plan to add 
 
 A next update is already under development, intending to add compatibility with Woodmart theme.
 
+If you have any good ideas about this plugin and yoy want to contribute, you can make a PR in the [github repo](https://github.com/theo-gk/menu-caching).
+
 == Installation ==
 
 1. Download the plugin from [Official WP Plugin Repository](https://wordpress.org/plugins/menu-caching/).
