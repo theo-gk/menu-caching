@@ -5,8 +5,8 @@ Plugin Name: Menu Caching
 Tags: wordpress menu, caching, menu cache, menu caching, speed up menu
 Author: Theo Gkitsos
 Author link: https://theodorosgkitsos.com/
-Version: 1.1.1
-Stable tag: 1.1.1
+Version: 1.1.2
+Stable tag: 1.1.2
 Requires at least: 5.3
 Tested up to: 6.3
 Requires PHP: 5.6
@@ -140,6 +140,9 @@ If you have any good ideas about this plugin and yoy want to contribute, you can
 4. Plugin's settings are located inside Tools > Menu Caching.
 
 == Changelog ==
+
+= 1.1.2 =
+* Tested up to 6.3.
 
 = 1.1.1 =
 * Tested up to 6.2.
