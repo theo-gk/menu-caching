@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WordPress Menu Caching\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-02 22:08+0000\n"
+"POT-Creation-Date: 2024-04-10 20:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,46 +16,42 @@ msgstr ""
 "X-Loco-Version: 2.5.5; wp-5.8.2\n"
 "X-Domain: wp-menu-caching"
 
-#. Description of the plugin
-msgid "Caches WordPress menus to improve page loading time."
-msgstr ""
-
-#: admin/class-wp-menu-caching-admin.php:88
+#: admin/class-menu-caching-admin.php:91
 msgid "Enable/Disable Caching per Menu"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://www.dicha.gr/"
+msgid "https://theodorosgkitsos.com/"
 msgstr ""
 
-#: admin/class-wp-menu-caching-admin.php:52
-#: admin/class-wp-menu-caching-admin.php:53
+#. Name of the plugin
+#: admin/class-menu-caching-admin.php:53 admin/class-menu-caching-admin.php:54
 msgid "Menu Caching"
 msgstr ""
 
-#: admin/class-wp-menu-caching-admin.php:415
+#: admin/class-menu-caching-admin.php:451
 msgid "Menus cache purged successfully!"
 msgstr ""
 
-#: admin/class-wp-menu-caching-admin.php:80
+#: admin/class-menu-caching-admin.php:83
 msgid "Purge All Menus' Cache"
 msgstr ""
 
-#: admin/class-wp-menu-caching-admin.php:82
+#: admin/class-menu-caching-admin.php:85
 msgid "Purge Cache"
 msgstr ""
 
-#: admin/class-wp-menu-caching-admin.php:105
+#: admin/class-menu-caching-admin.php:108
 msgid "Save Settings"
 msgstr ""
 
-#: admin/class-wp-menu-caching-admin.php:90
+#: admin/class-menu-caching-admin.php:93
 msgid ""
 "Select the menus you want to enable caching. Caching is enabled by default "
 "for all menus."
 msgstr ""
 
-#: admin/class-wp-menu-caching-admin.php:380
+#: admin/class-menu-caching-admin.php:410
 msgid "Settings"
 msgstr ""
 
@@ -63,10 +59,11 @@ msgstr ""
 msgid "Theo Gkitsos"
 msgstr ""
 
-#: admin/class-wp-menu-caching-admin.php:73
-msgid "Tools and info about menu caching."
+#. Description of the plugin
+msgid ""
+"This plugin caches WordPress classic menus to improve page loading time."
 msgstr ""
 
-#. Name of the plugin
-msgid "WordPress Menu Caching"
+#: admin/class-menu-caching-admin.php:76
+msgid "Tools and info about menu caching."
 msgstr ""
