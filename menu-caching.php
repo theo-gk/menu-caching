@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:       Menu Caching
- * Description:       This plugin caches WordPress menus to improve page loading time.
- * Version:           1.1.2
+ * Description:       This plugin caches WordPress classic menus to improve page loading time.
+ * Version:           1.1.3
  * Author:            Theo Gkitsos
  * Author URI:        https://theodorosgkitsos.com/
  * License:           GPL-2.0+
@@ -10,9 +10,9 @@
  * Text Domain:       menu-caching
  * Domain Path:       /languages
  * Requires at least: 5.3
- * Tested up to:      6.3
- * Requires PHP:      5.6
- * Stable tag:        1.1.2
+ * Tested up to:      6.5
+ * Requires PHP:      7.2
+ * Stable tag:        1.1.3
  */
 
 // If this file is called directly, abort.
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Current plugin version.
  */
-define( 'WP_MENU_CACHING_VERSION', '1.1.2' );
+define( 'WP_MENU_CACHING_VERSION', '1.1.3' );
 define( 'WP_MENU_CACHING_PLUGIN_DIR', dirname( __FILE__ ) );
 define( 'WP_MENU_CACHING_BASE_FILE', 'menu-caching/menu-caching.php' );
 
@@ -33,7 +33,7 @@ define( 'WP_MENU_CACHING_BASE_FILE', 'menu-caching/menu-caching.php' );
  */
 function activate_dc_menu_caching() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-menu-caching-activator.php';
-    Wp_Menu_Caching_Activator::activate();
+	Wp_Menu_Caching_Activator::activate();
 }
 
 /**
@@ -42,7 +42,7 @@ function activate_dc_menu_caching() {
  */
 function deactivate_dc_menu_caching() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-menu-caching-deactivator.php';
-    Wp_Menu_Caching_Deactivator::deactivate();
+	Wp_Menu_Caching_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_dc_menu_caching' );
@@ -63,4 +63,5 @@ function run_dc_menu_caching() {
 	$plugin = new Wp_Menu_Caching();
 	$plugin->run();
 }
+
 run_dc_menu_caching();

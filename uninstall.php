@@ -13,9 +13,9 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 require_once( WP_PLUGIN_DIR . '/menu-caching/admin/class-menu-caching-admin.php' );
 
-if ( !class_exists( 'Wp_Menu_Caching_Admin' ) ) exit;
+if ( ! class_exists( 'Wp_Menu_Caching_Admin' ) ) exit;
 
-$plugin_admin = new Wp_Menu_Caching_Admin( 'menu-caching', '1.0' );
+$plugin_admin = new Wp_Menu_Caching_Admin();
 $plugin_admin->dc_purge_menu_html_transients();
 
 delete_option( 'dc_menu_html_index' );

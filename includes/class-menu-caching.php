@@ -17,7 +17,7 @@ class Wp_Menu_Caching {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Wp_Menu_Caching_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Wp_Menu_Caching_Loader $loader Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -26,7 +26,7 @@ class Wp_Menu_Caching {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+	 * @var      string $plugin_name The string used to uniquely identify this plugin.
 	 */
 	protected $plugin_name;
 
@@ -35,7 +35,7 @@ class Wp_Menu_Caching {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $version    The current version of the plugin.
+	 * @var      string $version The current version of the plugin.
 	 */
 	protected $version;
 
@@ -49,11 +49,8 @@ class Wp_Menu_Caching {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'WP_MENU_CACHING_VERSION' ) ) {
-			$this->version = WP_MENU_CACHING_VERSION;
-		} else {
-			$this->version = '1.0.0';
-		}
+
+		$this->version     = defined( 'WP_MENU_CACHING_VERSION' ) ? WP_MENU_CACHING_VERSION : '1.0.0';
 		$this->plugin_name = 'menu-caching';
 
 		$this->load_dependencies();
@@ -116,7 +113,7 @@ class Wp_Menu_Caching {
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
+	 * Register all hooks related to the admin area functionality
 	 * of the plugin.
 	 *
 	 * @since    1.0.0
@@ -126,22 +123,22 @@ class Wp_Menu_Caching {
 
 		$plugin_admin = new Wp_Menu_Caching_Admin( $this->get_plugin_name(), $this->get_version() );
 
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'dc_menu_caching_create_menu' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'dc_menu_caching_create_menu' );
 
-        //Plugin actions on plugin list
-        $this->loader->add_filter( 'plugin_action_links', $plugin_admin, 'dc_action_links', 10, 2 );
+		//Plugin actions on plugin list
+		$this->loader->add_filter( 'plugin_action_links', $plugin_admin, 'dc_action_links', 10, 2 );
 
-        $this->loader->add_filter( 'wp_nav_menu', $plugin_admin, 'dc_save_menu_html', PHP_INT_MAX, 2 );
-        $this->loader->add_filter( 'pre_wp_nav_menu', $plugin_admin, 'dc_show_cached_menu_html', PHP_INT_MAX, 2 );
-        $this->loader->add_action( 'wp_update_nav_menu', $plugin_admin, 'dc_purge_updated_menu_transient', PHP_INT_MAX );
-        $this->loader->add_action( 'after_rocket_clean_domain', $plugin_admin, 'dc_purge_all_menu_html_transients' );
-        $this->loader->add_action( 'wp_ajax_dc_menu_caching_purge_all', $plugin_admin, 'dc_purge_all_menus_settings_button' );
-        $this->loader->add_action( 'wp_ajax_dc_save_nocache_menus', $plugin_admin, 'dc_save_nocache_menus' );
+		$this->loader->add_filter( 'wp_nav_menu', $plugin_admin, 'dc_save_menu_html', PHP_INT_MAX, 2 );
+		$this->loader->add_filter( 'pre_wp_nav_menu', $plugin_admin, 'dc_show_cached_menu_html', PHP_INT_MAX, 2 );
+		$this->loader->add_action( 'wp_update_nav_menu', $plugin_admin, 'dc_purge_updated_menu_transient', PHP_INT_MAX );
+		$this->loader->add_action( 'after_rocket_clean_domain', $plugin_admin, 'dc_purge_all_menu_html_transients' );
+		$this->loader->add_action( 'wp_ajax_dc_menu_caching_purge_all', $plugin_admin, 'dc_purge_all_menus_settings_button' );
+		$this->loader->add_action( 'wp_ajax_dc_save_nocache_menus', $plugin_admin, 'dc_save_nocache_menus' );
 
-        // enqueue styles-scripts
-        $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+		// enqueue styles-scripts
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-    }
+	}
 
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
@@ -156,8 +153,8 @@ class Wp_Menu_Caching {
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_plugin_name() {
 		return $this->plugin_name;
@@ -166,8 +163,8 @@ class Wp_Menu_Caching {
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @since     1.0.0
 	 * @return    Wp_Menu_Caching_Loader    Orchestrates the hooks of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_loader() {
 		return $this->loader;
@@ -176,11 +173,10 @@ class Wp_Menu_Caching {
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @since     1.0.0
 	 * @return    string    The version number of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_version() {
 		return $this->version;
 	}
-
 }
