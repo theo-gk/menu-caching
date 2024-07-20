@@ -10,7 +10,7 @@
  * Text Domain:       menu-caching
  * Domain Path:       /languages
  * Requires at least: 5.3
- * Tested up to:      6.5
+ * Tested up to:      6.6.1
  * Requires PHP:      7.2
  * Stable tag:        1.1.3
  */
