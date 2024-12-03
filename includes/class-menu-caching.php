@@ -4,9 +4,6 @@
  *
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
- *
- * @package    Wp_Menu_Caching
- * @subpackage Wp_Menu_Caching/includes
  */
 
 class Wp_Menu_Caching {
@@ -15,29 +12,23 @@ class Wp_Menu_Caching {
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      Wp_Menu_Caching_Loader $loader Maintains and registers all hooks for the plugin.
+	 * @var Wp_Menu_Caching_Loader $loader Maintains and registers all hooks for the plugin.
 	 */
-	protected $loader;
+	protected Wp_Menu_Caching_Loader $loader;
 
 	/**
 	 * The unique identifier of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      string $plugin_name The string used to uniquely identify this plugin.
+	 * @var string $plugin_name
 	 */
-	protected $plugin_name;
+	protected string $plugin_name;
 
 	/**
 	 * The current version of the plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      string $version The current version of the plugin.
+	 * @var string $version
 	 */
-	protected $version;
+	protected string $version;
 
 	/**
 	 * Define the core functionality of the plugin.
@@ -45,8 +36,6 @@ class Wp_Menu_Caching {
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
 	 * Load the dependencies, define the locale, and set the hooks for the admin area and
 	 * the public-facing side of the site.
-	 *
-	 * @since    1.0.0
 	 */
 	public function __construct() {
 
@@ -70,9 +59,6 @@ class Wp_Menu_Caching {
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @access   private
 	 */
 	private function load_dependencies() {
 
@@ -101,9 +87,6 @@ class Wp_Menu_Caching {
 	 *
 	 * Uses the Wp_Menu_Caching_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @access   private
 	 */
 	private function set_locale() {
 
@@ -115,9 +98,6 @@ class Wp_Menu_Caching {
 	/**
 	 * Register all hooks related to the admin area functionality
 	 * of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
 	 */
 	private function define_admin_hooks() {
 
@@ -131,7 +111,7 @@ class Wp_Menu_Caching {
 		$this->loader->add_filter( 'wp_nav_menu', $plugin_admin, 'dc_save_menu_html', PHP_INT_MAX, 2 );
 		$this->loader->add_filter( 'pre_wp_nav_menu', $plugin_admin, 'dc_show_cached_menu_html', PHP_INT_MAX, 2 );
 		$this->loader->add_action( 'wp_update_nav_menu', $plugin_admin, 'dc_purge_updated_menu_transient', PHP_INT_MAX );
-		$this->loader->add_action( 'after_rocket_clean_domain', $plugin_admin, 'dc_purge_all_menu_html_transients' );
+		$this->loader->add_action( 'after_rocket_clean_domain', $plugin_admin, 'purge_transients_after_wprocket_clear_cache' );
 		$this->loader->add_action( 'wp_ajax_dc_menu_caching_purge_all', $plugin_admin, 'dc_purge_all_menus_settings_button' );
 		$this->loader->add_action( 'wp_ajax_dc_save_nocache_menus', $plugin_admin, 'dc_save_nocache_menus' );
 
@@ -141,9 +121,7 @@ class Wp_Menu_Caching {
 	}
 
 	/**
-	 * Run the loader to execute all of the hooks with WordPress.
-	 *
-	 * @since    1.0.0
+	 * Run the loader to execute all the hooks with WordPress.
 	 */
 	public function run() {
 		$this->loader->run();
@@ -153,30 +131,27 @@ class Wp_Menu_Caching {
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @return    string    The name of the plugin.
-	 * @since     1.0.0
+	 * @return string The name of the plugin.
 	 */
-	public function get_plugin_name() {
+	public function get_plugin_name(): string {
 		return $this->plugin_name;
 	}
 
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @return    Wp_Menu_Caching_Loader    Orchestrates the hooks of the plugin.
-	 * @since     1.0.0
+	 * @return Wp_Menu_Caching_Loader
 	 */
-	public function get_loader() {
+	public function get_loader(): Wp_Menu_Caching_Loader {
 		return $this->loader;
 	}
 
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @return    string    The version number of the plugin.
-	 * @since     1.0.0
+	 * @return string
 	 */
-	public function get_version() {
+	public function get_version(): string {
 		return $this->version;
 	}
 }

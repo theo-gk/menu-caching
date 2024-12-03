@@ -2,8 +2,6 @@
 
 /**
  * Fired when the plugin is uninstalled.
- *
- * @package    Wp_Menu_Caching
  */
 
 // If uninstall not called from WordPress, then exit.

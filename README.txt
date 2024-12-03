@@ -5,11 +5,11 @@ Plugin Name: Menu Caching
 Tags: wordpress menu, caching, menu cache, menu caching, speed up menu
 Author: Theo Gkitsos
 Author link: https://theodorosgkitsos.com/
-Version: 1.1.3
-Stable tag: 1.1.3
+Version: 1.1.4
+Stable tag: 1.1.4
 Requires at least: 5.3
-Tested up to: 6.6.1
-Requires PHP: 7.2
+Tested up to: 6.7.1
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -140,6 +140,12 @@ If you have any good ideas about this plugin and yoy want to contribute, you can
 4. Plugin's settings are located inside Tools > Menu Caching.
 
 == Changelog ==
+= 1.1.4 =
+* Tested up to WP 6.7.x
+* Declare 7.4 as the minimum PHP version
+* Code cleanup and types declaration
+* Fix: Properly delete own transients when WPRocket cache is cleared
+* Fix: Error with WPRocket latest versions
 
 = 1.1.3 =
 * Tested up to WP 6.5.x

@@ -2,9 +2,6 @@
 
 /**
  * The admin-specific functionality of the plugin.
- *
- * @package    Wp_Menu_Caching
- * @subpackage Wp_Menu_Caching/admin
  */
 
 class Wp_Menu_Caching_Admin {
@@ -12,30 +9,24 @@ class Wp_Menu_Caching_Admin {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string $plugin_name The ID of this plugin.
+	 * @var string $plugin_name
 	 */
-	private $plugin_name;
+	private string $plugin_name;
 
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string $version The current version of this plugin.
+	 * @var string $version
 	 */
-	private $version;
+	private string $version;
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @param string $plugin_name The name of this plugin.
 	 * @param string $version     The version of this plugin.
-	 *
-	 * @since    1.0.0
 	 */
-	public function __construct( $plugin_name = 'menu-caching', $version = '1.0' ) {
+	public function __construct( string $plugin_name = 'menu-caching', string $version = '1.0' ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
@@ -43,8 +34,6 @@ class Wp_Menu_Caching_Admin {
 
 	/**
 	 * Register submenu page under Tools.
-	 *
-	 * @since    1.0.0
 	 */
 	public function dc_menu_caching_create_menu() {
 
@@ -60,8 +49,6 @@ class Wp_Menu_Caching_Admin {
 
 	/**
 	 * Creates main settings page.
-	 *
-	 * @since    1.0.0
 	 */
 	function dc_menu_caching_plugin_settings() {
 
@@ -121,10 +108,8 @@ class Wp_Menu_Caching_Admin {
 	 * @param stdClass $args     An object containing wp_nav_menu() arguments.
 	 *
 	 * @return string The HTML content for the navigation menu.
-	 *
-	 * @since    1.0.0
 	 */
-	function dc_save_menu_html( $nav_menu, $args ) {
+	function dc_save_menu_html( string $nav_menu, stdClass $args ): string {
 
 		if ( ! is_object( $args ) ) return $nav_menu;
 
@@ -180,13 +165,14 @@ class Wp_Menu_Caching_Admin {
 	 * Checks if a menu needs to be cached separately per session.
 	 * This happens if it contains nonce checks.
 	 *
-	 * @param $menu_slug string The menu slug.
+	 * @param $menu_slug string|null The menu slug.
 	 *
 	 * @return bool Returns true if it needs separate cache.
-	 *
-	 * @since    1.0.0
 	 */
-	function dc_cache_separate_menu_per_session( $menu_slug ) {
+	function dc_cache_separate_menu_per_session( ?string $menu_slug ): bool {
+
+		if ( empty( $menu_slug ) ) return false;
+
 		$menus_with_nonces = get_option( 'dc_menu_nonces_index', [] );
 
 		return in_array( sanitize_key( $menu_slug ), $menus_with_nonces, true );
@@ -199,10 +185,8 @@ class Wp_Menu_Caching_Admin {
 	 * @param $menu_html string The menu HTML.
 	 *
 	 * @return bool Returns true if the menu contains a nonce.
-	 *
-	 * @since    1.0.0
 	 */
-	function dc_check_if_menu_contains_nonce_checks( $menu_html ) {
+	function dc_check_if_menu_contains_nonce_checks( string $menu_html ): bool {
 		return strpos( $menu_html, 'wpnonce' ) !== false;
 	}
 
@@ -214,11 +198,10 @@ class Wp_Menu_Caching_Admin {
 	 * @param null     $default Null is returned by default so nothing happens.
 	 * @param stdClass $args    An object containing wp_nav_menu() arguments.
 	 *
-	 * @return mixed|null Menu HTML if cache is found, else null to continue.
-	 *
-	 * @since    1.0.0
+	 * @return string|null Menu HTML if cache is found, else null to continue.
+	 * @noinspection PhpUnusedParameterInspection
 	 */
-	function dc_show_cached_menu_html( $default, $args ) {
+	function dc_show_cached_menu_html( $default, stdClass $args ): ?string {
 
 		$menu_slug           = $this->dc_get_menu_slug( $args );
 		$theme_location      = $args->theme_location;
@@ -241,11 +224,12 @@ class Wp_Menu_Caching_Admin {
 	 * Purges the menu cache after saving a menu.
 	 * Fires after a navigation menu has been successfully updated.
 	 *
-	 * @param int $menu_id The ID of the updated menu.
+	 * Note when testing: If WPRocket is active, the action `after_rocket_clean_domain` is fired as well,
+	 * so all menu transients are deleted as well.
 	 *
-	 * @since    1.0.0
+	 * @param int $menu_id The ID of the updated menu.
 	 */
-	function dc_purge_updated_menu_transient( $menu_id ) {
+	function dc_purge_updated_menu_transient( int $menu_id ) {
 
 		$nav_obj   = wp_get_nav_menu_object( $menu_id );
 		$menu_slug = is_a( $nav_obj, 'WP_Term' ) ? $nav_obj->slug : '';
@@ -260,11 +244,9 @@ class Wp_Menu_Caching_Admin {
 	 *
 	 * @param stdClass $args Array of wp_nav_menu() arguments.
 	 *
-	 * @return  string|null The menu slug.
-	 *
-	 * @since    1.0.0
+	 * @return string|null The menu slug.
 	 */
-	function dc_get_menu_slug( $args ) {
+	function dc_get_menu_slug( stdClass $args ): ?string {
 
 		// Get the nav menu based on the requested menu.
 		$menu = wp_get_nav_menu_object( $args->menu );
@@ -295,22 +277,22 @@ class Wp_Menu_Caching_Admin {
 	 * Gets current user's roles.
 	 *
 	 * @return string Returns user's roles concatenated in a string, or 'incognito' for non-logged-in users.
-	 *
-	 * @since    1.0.0
 	 */
-	function dc_get_current_user_roles() {
-		return is_user_logged_in() ? implode( '_', (array) wp_get_current_user()->roles ) : 'incognito';
+	function dc_get_current_user_roles(): string {
+		return is_user_logged_in() ? implode( '_', wp_get_current_user()->roles ) : 'incognito';
 	}
 
 
 	/**
 	 * Finds whether a menu should be cached or not.
 	 *
-	 * @param string $menu_slug The menu slug.
+	 * @param string|null $menu_slug The menu slug.
 	 *
 	 * @return bool Returns true if caching is disabled.
 	 */
-	function dc_is_menu_caching_disabled( $menu_slug ) {
+	function dc_is_menu_caching_disabled( ?string $menu_slug ): bool {
+
+		if ( empty( $menu_slug ) ) return true;
 
 		$nocache_menus = get_option( 'dc_mc_nocache_menus', [] );
 
@@ -322,10 +304,8 @@ class Wp_Menu_Caching_Admin {
 	 * Purges all or selected transients and empties the cache index array.
 	 *
 	 * @param string $slug_to_clean The menu slug to clean its transients. If none provided, then all transients will be cleared.
-	 *
-	 * @since    1.0.0
 	 */
-	public function dc_purge_menu_html_transients( $slug_to_clean = '' ) {
+	public function dc_purge_menu_html_transients( string $slug_to_clean = '' ) {
 
 		$menu_html_index = get_option( 'dc_menu_html_index', [] );
 
@@ -348,6 +328,7 @@ class Wp_Menu_Caching_Admin {
 		// make sure all transients get deleted
 		// some transients are not indexed if there are saved at the same time with another
 		if ( empty( $slug_to_clean ) ) {
+
 			global $wpdb;
 			$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '%_dc_menu_html_%'" );
 		}
@@ -355,10 +336,17 @@ class Wp_Menu_Caching_Admin {
 
 
 	/**
+	 * Purges transient data after WP Rocket cache is cleared.
+	 * This action is also triggered when a menu is saved, so all the other menu transients get flushed.
+	 */
+	public function purge_transients_after_wprocket_clear_cache(): void {
+		$this->dc_purge_menu_html_transients();
+	}
+
+
+	/**
 	 * Purges all menus' cache from the settings page button.
 	 * Called via AJAX.
-	 *
-	 * @since 1.0.0
 	 */
 	function dc_purge_all_menus_settings_button() {
 
@@ -376,8 +364,6 @@ class Wp_Menu_Caching_Admin {
 	 * Saves the menus that have caching disabled.
 	 * These menu slugs are saved in the 'dc_mc_nocache_menus' option.
 	 * Called via AJAX.
-	 *
-	 * @since 1.0.0
 	 */
 	function dc_save_nocache_menus() {
 
@@ -399,11 +385,10 @@ class Wp_Menu_Caching_Admin {
 	 * @param array  $actions
 	 * @param string $plugin_file
 	 *
-	 * @return  array    $actions
-	 * @since    1.0.0
+	 * @return array $actions
 	 *
 	 */
-	public function dc_action_links( $actions, $plugin_file ) {
+	public function dc_action_links( array $actions, string $plugin_file ): array {
 
 		if ( $plugin_file === WP_MENU_CACHING_BASE_FILE ) {
 			$settings = [
@@ -420,9 +405,9 @@ class Wp_Menu_Caching_Admin {
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
-	 * @since    1.0.0
+	 * @param string $hook
 	 */
-	public function enqueue_styles( $hook ) {
+	public function enqueue_styles( string $hook ) {
 
 		if ( 'tools_page_menu-caching' === $hook ) {
 
@@ -436,9 +421,9 @@ class Wp_Menu_Caching_Admin {
 	/**
 	 * Register the JavaScript for the admin area.
 	 *
-	 * @since    1.0.0
+	 * @param string $hook
 	 */
-	public function enqueue_scripts( $hook ) {
+	public function enqueue_scripts( string $hook ) {
 
 		if ( 'tools_page_menu-caching' === $hook ) {
 
